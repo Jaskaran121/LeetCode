@@ -9,11 +9,11 @@ import java.util.stream.Collectors;
 //	they add up to a specific target.
 //	Assume that each input would have exactly one solution,not using the same 
 //	element twice.
-public class Problem1 {
+public class TwoSum {
 	//static int[] nums = new int[] {2,7,11,15};
 	int value;
 	int index;
-	Problem1()
+	TwoSum()
 	{
 		
 	}
@@ -38,7 +38,7 @@ public class Problem1 {
 		// TODO Auto-generated method stub
 		Scanner scan = new Scanner(System.in);
 		int[] nums = new int[] {3,2,4};
-	    Problem1 obj = new Problem1();
+	    TwoSum obj = new TwoSum();
 	    obj.twoSum(nums,9);
 	}
 
