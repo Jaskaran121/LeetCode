@@ -1,32 +1,33 @@
 import java.util.*;
 
-public class AddTwoNumbers {
-	class ListNode {
-		      int val;
-		      ListNode next;
-		      ListNode(int x) { val = x; }
-	}
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		List<Integer> list1 = new LinkedList<Integer>(Arrays.asList(2,4,3));
-		List<Integer> list2 = new LinkedList<Integer>(Arrays.asList(5,6,6));
-		AddTwoNumbers obj = new AddTwoNumbers();
-		LinkedList<Integer> result = obj.calculate(list1,list2);
-		System.out.println(result);
-	}
-
-	private LinkedList<Integer> calculate(List<Integer> list1, List<Integer> list2) {
-		LinkedList<Integer> resultList = new LinkedList<Integer>();
-		
-		return resultList;
-	}
-	
-	private int[] calucalteOnesTens(int num)
-	{
-		int[] array = new int[2];
-		array[0] = num %10;
-		//array[1] = nu,
-		return null;
-	}
-
+/**
+ * Definition for singly-linked list.
+ * public class ListNode {
+ *     int val;
+ *     ListNode next;
+ *     ListNode(int x) { val = x; }
+ * }
+ */
+class Solution {
+    public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
+        ListNode root = new ListNode(0);
+        ListNode head = root;
+        int carry = 0;
+        while(true)
+        {
+            if(l1==null && l2==null)
+                break;
+            int l1Value = l1!=null ? l1.val :0;
+            int l2Value = l2!=null ? l2.val :0;
+            int sum =  (carry+ l1Value+l2Value)%10;
+            carry = (sum)/10; 
+            root.next= new ListNode(sum);
+            root = root.next;
+            l1= l1!=null ? l1.next : null;
+            l2= l2!=null ? l2.next : null;
+        }
+        if(carry!=0)
+            root.next = new ListNode(carry);
+        return head.next;
+    }
 }
