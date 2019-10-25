@@ -1,0 +1,51 @@
+import java.util.*;
+
+public class NextClosestTime681 {
+	private static int minimumTime = Integer.MAX_VALUE;
+	private static String time = "";
+	public static void dfs(List<Character> list,String temp,int originalMins)
+	{
+		if(temp.length() == 4)
+		{	
+			int tempHours = Integer.parseInt(temp.substring(0,2));
+			int tempMins = Integer.parseInt(temp.substring(2,4));
+			if(tempHours>23 || tempMins>59) return;
+			int tempTotalTime = tempHours*60 + tempMins;
+			int distance = 0;
+			if(originalMins>tempTotalTime)
+			{
+				distance = tempTotalTime + (24*60 - originalMins);				
+			} else 
+				distance = tempTotalTime - originalMins;
+						
+			if(minimumTime>distance && distance!=0) {
+				minimumTime = distance;
+				time = tempHours + ":" + tempMins;
+			}
+			return;
+		}
+		for(int i=0;i<list.size();i++)
+		{
+			temp = temp + list.get(i);
+			dfs(list,temp,originalMins);
+			temp = temp.substring(0,temp.length()-1);
+		}
+		return;
+	}
+	
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		String time = "23:59";
+        List<Character> myList = new ArrayList<>();
+        for(int i=0;i<time.length();i++)
+        {
+        	if(i == 2) continue;
+        	myList.add(time.charAt(i));
+        }
+        
+        int originalMins = Integer.parseInt(time.substring(0,2))*60 + Integer.parseInt(time.substring(3,5));
+        dfs(myList, "",originalMins);
+        System.out.println(NextClosestTime681.time);
+	}
+
+}
